@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:fl_chart/fl_chart.dart';
+
 import '../../domain/provider/rewards_screen_provider.dart';
 
 class EarningOverview extends StatelessWidget {
@@ -28,7 +30,14 @@ class EarningOverview extends StatelessWidget {
               'Earnings Overview',
               style: theme.textTheme.displayLarge,
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 5),
+            LineChart(
+              curve: Curves.linear,
+              duration: const Duration(milliseconds: 150),
+                LineChartData( 
+                  // read about it in the LineChartData section
+                ),
+              ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
