@@ -1,0 +1,25 @@
+{
+    "totalCashback": 2000.00,
+    "currentBalance": 350.00,
+    "transactions": [
+      {
+        "date": "2024-09-05",
+        "amount": 20.00,
+        "bookingId": "BK916457",
+        "serviceName": "Hotel Booking"
+      },
+      {
+        "date": "2024-08-22",
+        "amount": 40.00,
+        "bookingId": "BK524391",
+        "serviceName": "Flight Booking"
+      },
+      {
+        "date": "2024-05-22",
+        "amount": 70.00,
+        "bookingId": "BK641321",
+        "serviceName": "Flight Booking"
+      }
+    ]
+  }
+  
