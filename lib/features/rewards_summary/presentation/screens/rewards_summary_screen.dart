@@ -1,4 +1,4 @@
-import 'package:balancee/features/rewards_summary/presentation/provider/rewards_screen_provider.dart';
+import 'package:balancee/features/rewards_summary/domain/provider/rewards_screen_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
