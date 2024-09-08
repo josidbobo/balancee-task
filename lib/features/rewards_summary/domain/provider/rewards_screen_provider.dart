@@ -10,12 +10,13 @@ class RewardsProvider with ChangeNotifier {
     loadJsonAsset();
   }
   late Map<String, dynamic> map;
-  late CashBackModel _cashBack = CashBackModel.fromJson(map);
+  late final CashBackModel _cashBack = CashBackModel.fromJson(map);
   CashBackModel get cashBack => _cashBack;
 
   Future loadJsonAsset() async {
     final String jsonString = await rootBundle.loadString(
         'lib/features/rewards_summary/data/local_data/cashback.json');
     map = json.decode(jsonString);
+    notifyListeners();
   }
 }
