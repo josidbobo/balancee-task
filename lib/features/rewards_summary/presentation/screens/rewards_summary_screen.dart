@@ -2,7 +2,10 @@ import 'package:balancee/features/rewards_summary/domain/provider/rewards_screen
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../core/utils/constants/size.dart';
+import '../../../../core/helper/helpers.dart';
+import '../../../../core/styles/themes/themeProvider.dart';
+import '../../../../core/helper/size.dart';
+import '../widgets/cashback_history.dart';
 import '../widgets/earning_overview.dart';
 
 class RewardsSummaryScreen extends StatefulWidget {
@@ -15,18 +18,21 @@ class RewardsSummaryScreen extends StatefulWidget {
 class _RewardsSummaryScreenState extends State<RewardsSummaryScreen> {
   @override
   Widget build(BuildContext context) {
+    var prov = Provider.of<ThemeProvider>(context);
     return Scaffold(
+      backgroundColor: prov.themeData.scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text('Rewards Summary'),
+        title: const Text('Rewards Summary'),
+        scrolledUnderElevation: 2,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            EarningOverview(context: context),
+            EarningOverview(context: context, theme: prov.themeData),
              spacer(),
-            _buildCashbackHistory(),
+            CashBackHistory(context: context, theme: prov.themeData),
              spacer(),
             _buildCashoutOptions(),
           ],
@@ -35,72 +41,32 @@ class _RewardsSummaryScreenState extends State<RewardsSummaryScreen> {
     );
   }
 
-  // Earnings Overview Section
-
-  // Cashback History Section
-  Widget _buildCashbackHistory() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('Cashback History',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-        SizedBox(height: 10),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          itemCount:
-              context.read<RewardsProvider>().cashBack.transactions.length,
-          itemBuilder: (context, index) {
-            var transaction =
-                context.read<RewardsProvider>().cashBack.transactions[index];
-            return Card(
-              elevation: 2,
-              margin: EdgeInsets.symmetric(vertical: 5),
-              child: ListTile(
-                title: Text(transaction.serviceName),
-                subtitle: Text('Booking ID: ${transaction.bookingId}'),
-                trailing: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text('N${transaction.amount.toStringAsFixed(2)}',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
-                    SizedBox(height: 5),
-                    Text(transaction.date),
-                  ],
-                ),
-              ),
-            );
-          },
-        ),
-      ],
-    );
-  }
 
   // Cashout Options Section
   Widget _buildCashoutOptions() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Cashout Options:',
+        const Text('Cashout Options:',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ElevatedButton.icon(
               onPressed: () {
-                _showSnackBar('Cashing out directly!');
+                showSnackBar('Cashing out directly!', context);
               },
-              icon: Icon(Icons.wallet),
-              label: Text('Bank Account'),
+              icon: const Icon(Icons.wallet),
+              label: Text('Bank Account', style: style(),),
               style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
             ),
             ElevatedButton.icon(
               onPressed: () {
-                _showSnackBar('Promo code applied!');
+                showSnackBar('Promo code applied!', context);
               },
-              icon: Icon(Icons.card_giftcard),
-              label: Text('As Promo Code'),
+              icon: const Icon(Icons.card_giftcard),
+              label: Text('As Promo Code', style: style(),),
               style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
             ),
           ],
@@ -109,11 +75,6 @@ class _RewardsSummaryScreenState extends State<RewardsSummaryScreen> {
     );
   }
 
-  // Snackbar for feedback
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
-  }
 }
+
 

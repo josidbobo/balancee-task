@@ -7,13 +7,16 @@ class EarningOverview extends StatelessWidget {
   const EarningOverview({
     super.key,
     required this.context,
+    required this.theme,
   });
 
   final BuildContext context;
+  final ThemeData theme;
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: theme.scaffoldBackgroundColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       elevation: 5,
       child: Padding(
@@ -23,28 +26,27 @@ class EarningOverview extends StatelessWidget {
           children: [
             Text(
               'Earnings Overview',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: theme.textTheme.displayLarge,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Total Cashback Earned',
-                        style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+                    Text('Total Cashback Earned',
+                        style: theme.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.bold)),
                     const SizedBox(height: 5),
-                    AnimatedSwitcher( 
-                      duration: Duration(milliseconds: 400),
+                    AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 400),
                       child: Text(
                         'N${context.read<RewardsProvider>().cashBack.totalCashBack.toStringAsFixed(2)}',
                         key: ValueKey(context
                             .read<RewardsProvider>()
                             .cashBack
                             .totalCashBack),
-                        style: const TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
+                        style: theme.textTheme.displayLarge!.copyWith(fontSize: 24),
                       ),
                     ),
                   ],
@@ -52,10 +54,11 @@ class EarningOverview extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Current Balance', style: TextStyle(fontSize: 14)),
+                    Text('Current Balance',
+                        style: theme.textTheme.displayMedium),
                     const SizedBox(height: 5),
                     AnimatedSwitcher(
-                      duration: Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 300),
                       child: Text(
                         'N${context.read<RewardsProvider>().cashBack.currentBalance.toStringAsFixed(2)}',
                         key: ValueKey(context
