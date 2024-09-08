@@ -5,12 +5,12 @@ class CashBackModel {
     required this.transactions,
   });
 
-  late final int totalCashBack;
-  late final int currentBalance;
+  late final double totalCashBack;
+  late final double currentBalance;
   late final List<Transactions> transactions;
 
   CashBackModel.fromJson(Map<String, dynamic> json) {
-    totalCashBack = json['period'] ?? 0;
+    totalCashBack = json['totalCashback'] ?? 0;
     currentBalance = json['currentBalance'] ?? 0;
     transactions = List<Transactions>.from(json['transactions']
         .map((transaction) => Transactions.fromJson(transaction)));
@@ -32,12 +32,12 @@ class Transactions {
   });
 
   late final String date, bookingId, serviceName;
-  late final int amount;
+  late final double amount;
 
   Transactions.fromJson(Map<String, dynamic> json) {
     date = json['date'] ?? "null";
     amount = json['amount'] ?? "null";
     bookingId = json["bookingId"] ?? "null";
-    serviceName = json["seviceName"] ?? "null";
+    serviceName = json["serviceName"] ?? "null";
   }
 }

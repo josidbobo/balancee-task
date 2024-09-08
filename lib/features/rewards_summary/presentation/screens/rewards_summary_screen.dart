@@ -2,6 +2,9 @@ import 'package:balancee/features/rewards_summary/domain/provider/rewards_screen
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../core/utils/constants/size.dart';
+import '../widgets/earning_overview.dart';
+
 class RewardsSummaryScreen extends StatefulWidget {
   const RewardsSummaryScreen({super.key});
 
@@ -13,90 +16,26 @@ class _RewardsSummaryScreenState extends State<RewardsSummaryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(
-            title: Text('Rewards Summary'),
-          ),
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
-            child: ChangeNotifierProvider(
-              create: (context) => RewardsProvider(),
-              builder: (context, provider) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildEarningsOverview(),
-                    SizedBox(height: 20),
-                    _buildCashbackHistory(),
-                    SizedBox(height: 20),
-                    _buildCashoutOptions(),
-                  ],
-                );
-              }
-            ),
-          ),
-        );
-  }
-
-  // Earnings Overview Section
-  Widget _buildEarningsOverview() {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      elevation: 5,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
+      appBar: AppBar(
+        title: Text('Rewards Summary'),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Earnings Overview',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Total Cashback Earned',
-                        style: TextStyle(fontSize: 16)),
-                    SizedBox(height: 5),
-                    AnimatedSwitcher(
-                      duration: Duration(milliseconds: 300),
-                      child: Text(
-                        '\$${context.read<RewardsProvider>().cashBack.totalCashBack.toStringAsFixed(2)}',
-                        key: ValueKey(context.read<RewardsProvider>().cashBack.totalCashBack),
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Current Balance', style: TextStyle(fontSize: 16)),
-                    SizedBox(height: 5),
-                    AnimatedSwitcher(
-                      duration: Duration(milliseconds: 300),
-                      child: Text(
-                        '\$${context.read<RewardsProvider>().cashBack.currentBalance.toStringAsFixed(2)}',
-                        key: ValueKey(context.read<RewardsProvider>().cashBack.currentBalance.toStringAsFixed(2)),
-                        style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            EarningOverview(context: context),
+             spacer(),
+            _buildCashbackHistory(),
+             spacer(),
+            _buildCashoutOptions(),
           ],
         ),
       ),
     );
   }
+
+  // Earnings Overview Section
 
   // Cashback History Section
   Widget _buildCashbackHistory() {
@@ -109,9 +48,11 @@ class _RewardsSummaryScreenState extends State<RewardsSummaryScreen> {
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: context.read<RewardsProvider>().cashBack.transactions.length,
+          itemCount:
+              context.read<RewardsProvider>().cashBack.transactions.length,
           itemBuilder: (context, index) {
-            var transaction = context.read<RewardsProvider>().cashBack.transactions[index];
+            var transaction =
+                context.read<RewardsProvider>().cashBack.transactions[index];
             return Card(
               elevation: 2,
               margin: EdgeInsets.symmetric(vertical: 5),
@@ -121,7 +62,7 @@ class _RewardsSummaryScreenState extends State<RewardsSummaryScreen> {
                 trailing: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text('\$${transaction.amount.toStringAsFixed(2)}',
+                    Text('N${transaction.amount.toStringAsFixed(2)}',
                         style: TextStyle(fontWeight: FontWeight.bold)),
                     SizedBox(height: 5),
                     Text(transaction.date),
@@ -140,18 +81,18 @@ class _RewardsSummaryScreenState extends State<RewardsSummaryScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Cashout Options',
+        Text('Cashout Options:',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
         SizedBox(height: 10),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             ElevatedButton.icon(
               onPressed: () {
                 _showSnackBar('Cashing out directly!');
               },
-              icon: Icon(Icons.attach_money),
-              label: Text('Cashout'),
+              icon: Icon(Icons.wallet),
+              label: Text('Bank Account'),
               style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
             ),
             ElevatedButton.icon(
@@ -159,7 +100,7 @@ class _RewardsSummaryScreenState extends State<RewardsSummaryScreen> {
                 _showSnackBar('Promo code applied!');
               },
               icon: Icon(Icons.card_giftcard),
-              label: Text('Apply Promo Code'),
+              label: Text('As Promo Code'),
               style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
             ),
           ],
@@ -175,3 +116,4 @@ class _RewardsSummaryScreenState extends State<RewardsSummaryScreen> {
     );
   }
 }
+

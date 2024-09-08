@@ -1,6 +1,8 @@
-import 'package:balancee/features/rewards_summary/presentation/screens/rewards_summary_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
+
+import 'features/rewards_summary/rewards_summary_init.dart';
 
 void main() async {
   await WidgetsFlutterBinding();
@@ -11,7 +13,7 @@ void main() async {
         debugShowCheckedModeBanner: false,
           locale: DevicePreview.locale(context),
           builder: DevicePreview.appBuilder,
-          home: const RewardsSummaryScreen());
+          home: const InitScreen());
     },
     enabled: false,
   ));
