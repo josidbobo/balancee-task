@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 import '../../domain/provider/rewards_screen_provider.dart';
+import 'chart_info.dart';
 
 class EarningOverview extends StatelessWidget {
   const EarningOverview({
@@ -34,60 +35,7 @@ class EarningOverview extends StatelessWidget {
             const SizedBox(height: 9),
             SizedBox(
               height: MediaQuery.of(context).size.height * .14,
-              child: LineChart(
-                LineChartData(
-                    titlesData: FlTitlesData(
-                        show: true,
-                        rightTitles: const AxisTitles(
-                            sideTitles: SideTitles(showTitles: false)),
-                        leftTitles: const AxisTitles(
-                          sideTitles: SideTitles(
-                              showTitles: true,
-                              interval: 700,
-                              reservedSize: 10),
-                        ),
-                        topTitles: const AxisTitles(
-                          sideTitles: SideTitles(
-                            showTitles: false,
-                          ),
-                        ),
-                        bottomTitles: AxisTitles(
-                            sideTitles: SideTitles(maxIncluded: true,
-                          interval: 1,
-                          reservedSize: 22,
-                          showTitles: true,
-                          getTitlesWidget: (double value, TitleMeta meta) {
-                            List month = ['Jan', 'Feb', 'Mar' 'Apr', 'May', 'June'];
-                            return SideTitleWidget(
-                                axisSide: meta.axisSide,
-                                child: FittedBox(child: Text(month[0])));
-                          },
-                        ))),
-                    lineBarsData: [
-                      LineChartBarData(
-                        color: chartColor,
-                        spots: const [
-                          FlSpot(0, 0),
-                          FlSpot(1, 5),
-                          FlSpot(2, 5),
-                          FlSpot(3, 7),
-                          FlSpot(5, 3),
-                        ],
-                        curveSmoothness: .78,
-                        isCurved: true,
-                        barWidth: 4,
-                        belowBarData: BarAreaData(
-                          show: true,
-                          color: Colors.blue.withOpacity(.2),
-                        ),
-                        preventCurveOverShooting: true,
-
-                        //show: true
-                      )
-
-                      // read about it in the LineChartData section
-                    ]),
-              ),
+              child: const ChartInfo(),
             ),
             const SizedBox(height: 8),
             Row(
