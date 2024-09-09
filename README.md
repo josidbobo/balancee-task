@@ -1,6 +1,7 @@
 # Balancee Task
 
-https://github.com/user-attachments/assets/8404d5f0-2c0a-4117-be5d-fadc9e68f3d8
+![balancee_task](https://github.com/user-attachments/assets/efde4f3d-34ee-47f8-a5a8-44a373141c36)
+
 
 Built it using the Clean Architecture structure for Flutter, the `Rewards Summary Screen` can be located in   
     
@@ -8,11 +9,10 @@ Built it using the Clean Architecture structure for Flutter, the `Rewards Summar
       features/
         rewards_summary
 
-A new Flutter project.
+The `Rewards Summary Screen` is divided into the `Earning Overview`, `CashBackHistory` and `CashoutOptions`
 
-## Getting Started
+1. `Earning Overview` Gives the customer a chart showing his recent earnings from CashBack in visual format and also displays it in numbers - Total Cashback and Current balance.
 
-This project is a starting point for a Flutter application.
+2. `CashBack History` Displays each cash back with the booking that generated it as well as the date and amount
 
-A few resources to get you started if this is your first Flutter project:
-
+3. `Cashout Options` Consists of buttons that tell the user to either withdraw using the bank option or Promo code for future use.
