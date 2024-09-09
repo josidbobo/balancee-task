@@ -3,7 +3,7 @@
 ![balancee_task](https://github.com/user-attachments/assets/efde4f3d-34ee-47f8-a5a8-44a373141c36)
 
 
-Built it using the Clean Architecture structure for Flutter, the `Rewards Summary Screen` can be located in   
+Built it using the Clean Architecture structure for Flutter and was optimised for both light and dark mode, the `Rewards Summary Screen` can be located in   
     
     lib/
       features/
