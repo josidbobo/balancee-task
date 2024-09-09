@@ -13,13 +13,14 @@ class ThemeToggleButton extends StatelessWidget {
     return InkWell(
                 onTap: prov.toggleTheme,
                 child: Container(
-                  margin: const EdgeInsets.only(left: 15),
+                  margin: const EdgeInsets.only(left: 15, bottom: 6, right: 6),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 15, vertical: 15 / 2,),
+                    horizontal: 15, vertical: 14 / 2,),
                   decoration: BoxDecoration(
                     color: prov.themeData.canvasColor,
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
-                    border: Border.all(color: prov.themeData.colorScheme.primary)),
+                   // border: Border.all(color: prov.themeData.colorScheme.primary)
+                   ),
                     child: IconButton(icon: Icon(prov.themeData == AppThemes.dark ? CupertinoIcons.brightness : CupertinoIcons.moon), onPressed: prov.toggleTheme, color: prov.themeData.colorScheme.primary,)),
               );
   }

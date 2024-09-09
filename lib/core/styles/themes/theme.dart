@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppThemes {
 
   static final light = ThemeData.light().copyWith(
-    scaffoldBackgroundColor: wbgColor,
+    scaffoldBackgroundColor: bprimary,
     brightness: Brightness.light,
     colorScheme: const ColorScheme.light().copyWith(primary: wprimary),
     textTheme: GoogleFonts.poppinsTextTheme().copyWith(displayMedium: const TextStyle(color: Colors.black), displayLarge: const TextStyle(fontSize: 14, color: Colors.black, fontWeight: FontWeight.bold),),

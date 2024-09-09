@@ -1,3 +1,4 @@
+import 'package:balancee/features/rewards_summary/domain/models/cashback_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +21,7 @@ class CashBackHistory extends StatelessWidget {
       children: [
         Text('Cashback History',
             style: theme.textTheme.displayLarge),
-        const SizedBox(height: 10),
+        const SizedBox(height: 6),
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -29,26 +30,39 @@ class CashBackHistory extends StatelessWidget {
           itemBuilder: (context, index) {
             var transaction =
                 context.read<RewardsProvider>().cashBack.transactions[index];
-            return Card(
-              elevation: 2,
-              margin: const EdgeInsets.symmetric(vertical: 5),
-              child: ListTile(
-                title: Text(transaction.serviceName),
-                subtitle: Text('Booking ID: ${transaction.bookingId}'),
-                trailing: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text('N${transaction.amount.toStringAsFixed(2)}',
-                        style: theme.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 5),
-                    Text(transaction.date, style: theme.textTheme.displayMedium,),
-                  ],
-                ),
-              ),
-            );
+            return historyCard(transaction);
           },
+        ),
+        const SizedBox(height: 3),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text('Show more...',
+                style: theme.textTheme.displayMedium),
+          ],
         ),
       ],
     );
+  }
+
+  
+Card historyCard(Transactions transaction) {
+    return Card(
+            elevation: 2,
+            margin: const EdgeInsets.symmetric(vertical: 5),
+            child: ListTile(
+              title: Text(transaction.serviceName),
+              subtitle: Text('Booking ID: ${transaction.bookingId}'),
+              trailing: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text('N${transaction.amount.toStringAsFixed(2)}',
+                      style: theme.textTheme.displayMedium!.copyWith(fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 5),
+                  Text(transaction.date, style: theme.textTheme.displayMedium,),
+                ],
+              ),
+            ),
+          );
   }
 }

@@ -24,9 +24,11 @@ class _RewardsSummaryScreenState extends State<RewardsSummaryScreen> {
     return Scaffold(
       backgroundColor: prov.themeData.scaffoldBackgroundColor,
       appBar: AppBar(
-        leading: const Text('Rewards Summary'),
+        title: const Text('Rewards Summary'),
         scrolledUnderElevation: 2,
-        actions: [ThemeToggleButton(prov)],
+        actions: [
+
+          ThemeToggleButton(prov)],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(10.0),

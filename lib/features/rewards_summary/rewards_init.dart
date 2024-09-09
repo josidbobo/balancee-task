@@ -12,17 +12,17 @@ class InitScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => RewardsProvider(),
-        builder: (context, provider) {
-          return MaterialApp(
-        debugShowCheckedModeBanner: false,
-          locale: DevicePreview.locale(context),
-          builder: DevicePreview.appBuilder,
-          theme: Provider.of<ThemeProvider>(context).themeData,
-          darkTheme: AppThemes.dark,
-          home: const RewardsSummaryScreen(),
-          );
-        });
+    return Builder(
+          builder: (context) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              locale: DevicePreview.locale(context),
+              builder: DevicePreview.appBuilder,
+              theme: Provider.of<ThemeProvider>(context).themeData,
+              darkTheme: AppThemes.dark,
+              home: const RewardsSummaryScreen(),
+            );
+          }
+        );
   }
 }
