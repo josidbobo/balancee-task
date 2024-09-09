@@ -2,7 +2,7 @@ import 'package:balancee/features/rewards_summary/domain/models/cashback_model.d
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../domain/provider/rewards_screen_provider.dart';
+import '../../../domain/provider/rewards_screen_provider.dart';
 
 class CashBackHistory extends StatelessWidget {
   const CashBackHistory({

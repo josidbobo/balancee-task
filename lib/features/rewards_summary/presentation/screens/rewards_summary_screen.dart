@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 
 import '../../../../core/styles/themes/themeProvider.dart';
 import '../../../../core/helper/size.dart';
-import '../widgets/cashback_history.dart';
-import '../widgets/cashout.dart';
-import '../widgets/earning_overview.dart';
+import '../widgets/cashback_history/cashback_history.dart';
+import '../widgets/cashout_widgets/cashout.dart';
+import '../widgets/earning_overview/earning_overview.dart';
 
 class RewardsSummaryScreen extends StatefulWidget {
   const RewardsSummaryScreen({super.key});

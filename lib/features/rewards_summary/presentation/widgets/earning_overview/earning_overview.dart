@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'package:fl_chart/fl_chart.dart';
 
-import '../../domain/provider/rewards_screen_provider.dart';
+import '../../../domain/provider/rewards_screen_provider.dart';
 import 'chart_info.dart';
 
 class EarningOverview extends StatelessWidget {

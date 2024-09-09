@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/constants/color.dart';
+import '../../../../../core/utils/constants/color.dart';
 
 class ChartInfo extends StatelessWidget {
   const ChartInfo({
